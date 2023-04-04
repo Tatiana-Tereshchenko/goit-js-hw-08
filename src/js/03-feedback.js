@@ -10,6 +10,7 @@ const save = throttle(() => {
     message: messageImput.value,
   };
   localStorage.setItem(keyEL, JSON.stringify(state));
+  
 }, 500);
 
 
