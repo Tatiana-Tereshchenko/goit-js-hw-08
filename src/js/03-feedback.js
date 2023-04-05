@@ -1,39 +1,38 @@
 import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
 const emailInput = form.querySelector('input[name="email"]');
-const messageImput = form.querySelector('textarea[name="message"]');
-const keyEL = 'feedback-form-state'
+const messageInput = form.querySelector('textarea[name="message"]');
+const FEEDBACK_FORM_STATE = 'feedback-form-state'
 
 const save = throttle(() => {
   const state = {
     email: emailInput.value,
-    message: messageImput.value,
+    message: messageInput.value,
   };
-  localStorage.setItem(keyEL, JSON.stringify(state));
-  
-}, 500);
+  localStorage.setItem(FEEDBACK_FORM_STATE, JSON.stringify(state));
+}, 1000);
 
 
 form.addEventListener('input', save);
 
 
-const saveEl = localStorage.getItem(keyEL);
+const saveEl = localStorage.getItem(FEEDBACK_FORM_STATE);
 if (saveEl) {
   const state = JSON.parse(saveEl);
   emailInput.value = state.email;
-  messageImput.value = state.message;
+  messageInput.value = state.message;
 }
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (!emailInput.value || !messageImput.value) {
+    if (!emailInput.value || !messageInput.value) {
     alert('Please fill in all fields!');
     return;
   }
-  localStorage.removeItem(keyEL);  
+  localStorage.removeItem(FEEDBACK_FORM_STATE);  
   const state = {
     email: emailInput.value,
-    message: messageImput.value,
+    message: messageInput.value,
   };
     console.log(state); 
     form.reset();

@@ -5,10 +5,9 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { galleryItems } from './gallery-items';
 // Change code below this line
 
-console.log(galleryItems);
-const gallery = document.querySelector('.gallery')
+const ulEl = document.querySelector('.gallery')
 
-const galleryMarkup = galleryItems.map(({ preview, original, description }) => {
+const galleryMarcup = galleryItems.map(({ preview, original, description }) => {
     return `<li class="gallery__item">
 <a class="gallery__link"
     href= "${original}">
@@ -21,12 +20,12 @@ const galleryMarkup = galleryItems.map(({ preview, original, description }) => {
 </li>`
 }).join('');
 
-gallery.insertAdjacentHTML('beforeend', galleryMarkup)
+ulEl.insertAdjacentHTML('beforeend', galleryMarcup)
 
 console.log(galleryItems);
 
 
-let lightbox = new SimpleLightbox(".gallery a", {
+const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
 });
